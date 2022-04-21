@@ -1,4 +1,6 @@
 import os
+import sys
+import pid
 import time
 import math
 from pathlib import Path
@@ -58,6 +60,7 @@ def get_price(token):
     return price
 
 
+@pid.PidFile("price_alerts", piddir=os.getcwd())
 def main():
     while True:
         block = wait_for_next_block()
@@ -91,4 +94,11 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except pid.base.PidFileAlreadyLockedError:
+        sys.exit(0)
+    except (SystemExit, KeyboardInterrupt) as e:
+        sys.exit(e)
+    except:
+        raise
