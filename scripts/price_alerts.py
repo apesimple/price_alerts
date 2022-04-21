@@ -1,10 +1,11 @@
+import os
 import time
 import math
 from datetime import datetime
 from slack_functions import send_slack_msg
 from brownie import *
 
-p = project.load("../")
+p = project.load(".")
 network.connect('mainnet_local')
 
 USDC = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
