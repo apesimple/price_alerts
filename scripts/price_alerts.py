@@ -8,6 +8,7 @@ from brownie import *
 
 parent_dir = Path(__file__).resolve().parents[1]
 p = project.load(parent_dir)
+
 network.connect('mainnet_local')
 
 USDC = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
